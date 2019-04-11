@@ -214,10 +214,12 @@
     <origin xyz="0 0 ${bodylen/2}"/>
   </joint>
 
+  <xacro:property name="boxlen" value="0.08" />
+
   <link name="box">
     <visual>
       <geometry>
-        <box size="0.08 0.08 0.08"/>
+        <box size="${boxlen} ${boxlen} ${boxlen}"/>
       </geometry>
       <material name="blue"/>
       <origin xyz="-0.04 0 0"/>
@@ -239,10 +241,9 @@
   <link name="lense">
     <visual>
       <geometry>
-        <cylinder radius="0.03" length="0.05"/>
+        <cylinder radius="0.03" length="${boxlen/4}"/>
       </geometry>
       <material name="black"/>
-      <orgin xyz="0 0 0" rpy="0 0 0"/>
     </visual>
     <collision>
       <geometry>
@@ -255,7 +256,15 @@
   <joint name="lenjoint" type="fixed">
     <parent link="box"/>
     <child link="lense"/>
-    <orgin xyz="0.04 0 0" rpy="0 ${pi/2} 0"/>
+    <origin xyz="0 0 0" rpy="0 ${pi/2} 0"/>
+  </joint>
+
+  <link name="base_footprint" />
+
+  <joint name="footprint_joint" type="fixed">
+    <parent link="base_footprint"/>
+    <child link="base_link"/>
+    <origin xyz="0 0 ${wheeldiam+0.1+bodylen/2}"/>
   </joint>
 
 </robot>

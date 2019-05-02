@@ -238,6 +238,14 @@
     <origin xyz="${.707*width+0.04} 0 ${.707*width}"/>
   </joint>
 
+  <link name="eye"/>
+
+  <joint name="eye_joint" type="fixed">
+    <parent link="lense"/>
+    <child link="eye"/>
+    <origin rpy="${pi/2} ${pi} ${pi/2}"/>
+  </joint>
+
   <link name="lense">
     <visual>
       <geometry>
